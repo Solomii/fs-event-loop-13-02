@@ -147,3 +147,36 @@ console.log(serializeProduct);
 
 const deSerializeProduct = JSON.parse(serializeProduct);
 console.log(deSerializeProduct);
+
+/////!!!!! fetch()
+
+const promise = fetch("./assets/js/data.json");
+// console.log(promise);
+
+// promise.then(
+//     (response) => {
+//         const responsePromise = response.json();
+//         console.log("ok",responsePromise);
+//         responsePromise.then((data)=>{
+//             console.table(data);
+//         },
+//         ()=>{
+//             console.log('error responsePromise')
+//         })
+//     },
+//     () => {
+//         console.log("error promise");
+//     }
+// );
+
+const responsePromise = promise.then((response) => {
+    return response.json();
+});
+
+responsePromise.then((data) => {
+    console.table(data);
+});
+
+fetch("./assets/js/data.json")
+    .then((response) => response.json())
+    .then((data) => console.table(data));
