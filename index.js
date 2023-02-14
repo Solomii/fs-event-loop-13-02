@@ -38,7 +38,7 @@ function getConsistentlyOutputNumber() {
     }
 }
 
-getConsistentlyOutputNumber();
+// getConsistentlyOutputNumber();
 
 // const getConsistentlyOutputNumber2 = () => {
 //     for (let i = 0; i <= 10; i++) {
@@ -66,7 +66,7 @@ function counterInterval(n = 10) {
     };
 }
 
-const counterInterval1 = counterInterval();
+// const counterInterval1 = counterInterval();
 // console.time("marker");
 // counterInterval();
 
@@ -75,16 +75,75 @@ function counterTimeout(count) {
         return;
     }
 
-    console.log(count=0);
+    console.log((count = 0));
     const idTimeout = setTimeout(() => {
         counterTimeout(count + 1);
         if (count >= 9) {
-          clearTimeout(idTimeout);
-          console.timeEnd("marker");
-          return
-      }
+            clearTimeout(idTimeout);
+            console.timeEnd("marker");
+            return;
+        }
     }, 1000);
 }
 
-console.time("marker");
-counterTimeout();
+// console.time("marker");
+// counterTimeout();
+
+///// !!!! JSON !!!
+
+const user = {
+    id: 1,
+    firstName: "Brad",
+    lastName: "Pitt",
+    age: 59,
+    getFullName() {
+        return this.firstName + " " + this.lastName;
+    },
+    children: ["Alex", "Vax", "Tom"],
+    isAdult: true,
+    ukrainePasport: null,
+    pet: undefined,
+
+    [Symbol("mitka")]: "mitka",
+    bday: {
+        year: 1963,
+        month: 12,
+    },
+};
+
+console.log(user);
+const serializeUser = JSON.stringify(user);
+console.log(serializeUser);
+
+const deSerializeUser = JSON.parse(serializeUser);
+console.log(deSerializeUser);
+
+/*
+створіть обєкт продукт, який має властивості таких типів: рядок, масив, число, булевий, нічого, невідомо
+
+обєкт залогувати, 
+серіалізувати,
+ залогувати результат серіалізації, 
+десеріалізувати,
+залогувати результат серіалізації, 
+*/
+
+const product = {
+    id: 1,
+    name: "sweets",
+    curency: "uh",
+    getName() {
+        return this.name + " " + this.curency;
+    },
+    variety: ["dark", "white", "milk"],
+    isOnStore: true,
+    discount: null,
+    pet: undefined,
+};
+
+console.log(product);
+const serializeProduct = JSON.stringify(product);
+console.log(serializeProduct);
+
+const deSerializeProduct = JSON.parse(serializeProduct);
+console.log(deSerializeProduct);
