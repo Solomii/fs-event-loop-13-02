@@ -177,7 +177,7 @@ console.log(deSerializeProduct);
 //     console.table(data);
 // });
 
-//// 
+////
 // fetch("./assets/js/data.json")
 //     .then(
 //         (response) => response.json(),
@@ -195,15 +195,24 @@ console.log(deSerializeProduct);
 fetch("./assets/js/data.json")
     .then((response) => response.json())
     .then((data) => {
-        data.forEach ((user)=>{
-            console.log(user.firstName,user.age)
-        })
+        data.forEach((user) => {
+            console.log(user.firstName, user.age);
+        });
         // console.table(data)
-    }
-    )
+    })
     .catch((error) => {
         console.log(error);
     })
     .finally(() => {
         console.log("finally");
     });
+
+/// !!!!!!! PROMISE !!!!!!!!!!! \\\
+
+const myPromise1 = new Promise(executor);
+
+function executor(resolve, reject) {
+    Math.random() > 0.5 ? resolve() : reject();
+}
+
+console.log(myPromise1)
