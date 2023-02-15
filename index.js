@@ -150,7 +150,7 @@ console.log(deSerializeProduct);
 
 /////!!!!! fetch()
 
-const promise = fetch("./assets/js/data.json");
+// const promise = fetch("./assets/js/data.json");
 // console.log(promise);
 
 // promise.then(
@@ -169,14 +169,41 @@ const promise = fetch("./assets/js/data.json");
 //     }
 // );
 
-const responsePromise = promise.then((response) => {
-    return response.json();
-});
+// const responsePromise = promise.then((response) => {
+//     return response.json();
+// });
 
-responsePromise.then((data) => {
-    console.table(data);
-});
+// responsePromise.then((data) => {
+//     console.table(data);
+// });
+
+//// 
+// fetch("./assets/js/data.json")
+//     .then(
+//         (response) => response.json(),
+//         (error) => {
+//             console.log("error promise", error);
+//         }
+//     )
+//     .then(
+//         (data) => console.table(data),
+//         (error) => {
+//             console.log("error responsePromise".error);
+//         }
+//     );
 
 fetch("./assets/js/data.json")
     .then((response) => response.json())
-    .then((data) => console.table(data));
+    .then((data) => {
+        data.forEach ((user)=>{
+            console.log(user.firstName,user.age)
+        })
+        // console.table(data)
+    }
+    )
+    .catch((error) => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log("finally");
+    });
