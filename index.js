@@ -212,7 +212,56 @@ fetch("./assets/js/data.json")
 const myPromise1 = new Promise(executor);
 
 function executor(resolve, reject) {
-    Math.random() > 0.5 ? resolve() : reject();
+    Math.random() > 0.5 ? resolve("data") : reject("error");
 }
 
-console.log(myPromise1)
+myPromise1
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+// setTimeout (callback, 100)
+//temeout(200).then(callback)
+
+function timeout(time, word) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(word);
+        }, time);
+    });
+}
+
+timeout(1500, "fdgfd")
+    .then((data) => {
+        console.log(data);
+    })
+    .catch(() => {
+        console.log("reject");
+    })
+    .finally(() => {
+        console.log("finally");
+    });
+
+function loadImage(path) {
+    const newImage = new Image();
+    newImage.src = path;
+    return new Promise((resolve, reject) => {
+        newImage.addEventListener("load", () => {
+            resolve(newImage);
+        });
+        newImage.addEventListener("error", () => {
+            reject(new Error("path invalid"));
+        });
+    });
+}
+
+loadImage("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg")
+    .then((element) => {
+        document.body.append(element);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
